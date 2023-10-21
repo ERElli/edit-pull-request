@@ -1,5 +1,10 @@
+import { getCurrentTags } from './utils/getCurrentTags';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { minimatch } from 'minimatch'
+import { getInputs } from './utils/getInputs';
+import { getConfigFile, getPullRequest, updatePullRequest } from './octokit';
+import { getTagsToAdd } from './utils/getTagsToAdd';
 
 /**
  * The main function for the action.
@@ -7,22 +12,43 @@ import * as github from '@actions/github';
  */
 export async function run(): Promise<void> {
 	try {
-		const prNumber = parseInt(core.getInput('pr-number'));
-		const configPath = core.getInput('config-path');
-		const token = core.getInput('repo-token');
+		// Get action inputs
+		const {prNumber, configPath, token} = getInputs();
 
-		core.info(`prNumber: ${prNumber}`)
-		core.info(`configPath: ${configPath}`)
-		core.info(`token: ${token}`)
+		// initialize Octokit client
+		const octokit = github.getOctokit(token);
 
-		const client = github.getOctokit(token);
-		const pull = await client.rest.pulls.get({
-			owner: github.context.repo.owner,
-			repo: github.context.repo.repo,
-			pull_number: prNumber,
-		});
+		// Fetch config file
+		const configFile = await getConfigFile(octokit, configPath);
 
-		console.dir({pull}, {depth: 50});
+		// Fetch pull request information
+		const pull = await getPullRequest({configFile, octokit, prNumber});
+
+		if (configFile.titleTagConfig) {
+			const titleTagConfig = configFile.titleTagConfig;
+			const tagWrappers = titleTagConfig.tagWrappers;
+
+			// Get names of files changed in the PR
+			const names = pull.updatedFiles.map((item) => {
+				return item.filename;
+			});
+			
+			// Parse tags that exists at the beginning of the title
+			const title = pull.info.title;
+			const currentTags = getCurrentTags(title, tagWrappers);
+
+			// Parse list of tags to apply
+			const tagConfigs = titleTagConfig.tags;
+			const tagsToApply = getTagsToAdd(tagConfigs, names, currentTags)
+
+			let tagTitle: string = '';
+			tagsToApply.forEach((tag) => {
+				tagTitle += `${tagWrappers[0]}${tag}${tagWrappers[1]}`
+			})
+			const finalTitle = `${tagTitle}${title}`;
+
+			await updatePullRequest(octokit, prNumber, {title: finalTitle});
+		}
 	} catch (error) {
 		// Fail the workflow run if an error occurs
 		if (error instanceof Error) core.setFailed(error.message)

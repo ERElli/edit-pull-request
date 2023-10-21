@@ -4,15 +4,18 @@
   "description": "Github action to update a pull-request",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build src/index.ts"
+    "build": "ncc build src/index.ts -m"
   },
   "author": "ERElli",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.10.1",
-    "@actions/github": "^6.0.0"
+    "@actions/github": "^6.0.0",
+    "minimatch": "^9.0.3",
+    "yaml": "^2.3.3"
   },
   "devDependencies": {
+    "@types/node": "^20.8.7",
     "@vercel/ncc": "^0.38.1",
     "eslint": "^8.52.0",
     "typescript": "^5.2.2"
