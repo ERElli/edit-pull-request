@@ -1,0 +1,21 @@
+name: 'PR Editor'
+description: 'A github action to edit pull requests'
+author: 'ERElli'
+inputs:
+  repo-token:
+    description: 'The GitHub token used to manage labels'
+    required: false
+    default: ${{ github.token }}
+  config-path:
+    description: 'The path for the label configurations'
+    default: '.github/edit-pr.yml'
+    required: false
+  pr-number:
+    description: 'The pull request number'
+    required: true
+outputs:
+  pr-title:
+    description: 'The updated pull request title'
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
