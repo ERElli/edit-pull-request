@@ -1,0 +1,34 @@
+{
+  "name": "edit-pull-request",
+  "version": "1.0.0",
+  "description": "Github action to update a pull-request",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/index.ts -m --license licenses.txt",
+    "clean": "rm -rf ./node_modules package-lock.json",
+    "lint": "eslint ."
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "ERElli",
+  "license": "MIT",
+  "devDependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0",
+    "@octokit/types": "^12.1.1",
+    "@types/node": "^20.8.7",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@vercel/ncc": "^0.38.1",
+    "eslint": "^8.53.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.0",
+    "minimatch": "^9.0.3",
+    "typescript": "^5.2.2",
+    "yaml": "^2.3.3"
+  }
+}
