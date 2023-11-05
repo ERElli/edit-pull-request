@@ -1,18 +1,13 @@
-import { ConfigFile, OctokitClient } from '../types';
+import { ListFilesReturnType, OctokitClient } from './octokitClient';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 
-export const getPullRequest = async ({
-	configFile,
-	octokit,
-	prNumber,
-}: {
-	configFile: ConfigFile,
+export const getPullRequest = async (
 	octokit: OctokitClient,
 	prNumber: number,
-}) => {
+): Promise<{title: string, updatedFiles: ListFilesReturnType}> => {
 	core.info('Fetching PR information');
-	const {data: info} = await octokit.rest.pulls.get({
+	const {data: {title}} = await octokit.rest.pulls.get({
 		owner: github.context.repo.owner,
 		repo: github.context.repo.repo,
 		pull_number: prNumber,
@@ -26,7 +21,7 @@ export const getPullRequest = async ({
 	});
 
 	return {
-		info,
+		title,
 		updatedFiles,
 	}
 }

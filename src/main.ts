@@ -1,10 +1,10 @@
 import { getCurrentTags } from './utils/getCurrentTags';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { minimatch } from 'minimatch'
 import { getInputs } from './utils/getInputs';
 import { getConfigFile, getPullRequest, updatePullRequest } from './octokit';
 import { getTagsToAdd } from './utils/getTagsToAdd';
+import { initializeOctokit } from './octokit/octokitClient';
 
 /**
  * The main function for the action.
@@ -16,13 +16,13 @@ export async function run(): Promise<void> {
 		const {prNumber, configPath, token} = getInputs();
 
 		// initialize Octokit client
-		const octokit = github.getOctokit(token);
+		const octokit = initializeOctokit(token);
 
 		// Fetch config file
 		const configFile = await getConfigFile(octokit, configPath);
 
 		// Fetch pull request information
-		const pull = await getPullRequest({configFile, octokit, prNumber});
+		const pull = await getPullRequest(octokit, prNumber);
 
 		if (configFile.titleTagConfig) {
 			const titleTagConfig = configFile.titleTagConfig;
@@ -34,7 +34,7 @@ export async function run(): Promise<void> {
 			});
 			
 			// Parse tags that exists at the beginning of the title
-			const title = pull.info.title;
+			const title = pull.title;
 			const currentTags = getCurrentTags(title, tagWrappers);
 
 			// Parse list of tags to apply
