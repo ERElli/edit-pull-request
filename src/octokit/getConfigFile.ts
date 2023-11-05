@@ -25,5 +25,7 @@ export const getConfigFile = async (
 	}
 
 	// Parse the yml file into a json object
-	return yaml.parse(content) as ConfigFile;
+	const parsed = yaml.parse(content) as ConfigFile;
+	console.dir({parsed}, {depth: 10});
+	return parsed;
 }
