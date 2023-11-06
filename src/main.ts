@@ -27,6 +27,7 @@ export async function run(): Promise<void> {
 			const titleTagConfig = configFile.titleTagConfig;
 			const tagWrappers = titleTagConfig.tagWrappers;
 
+			console.dir({tagWrappers});
 			if (tagWrappers.length !== 2) {
 				core.setFailed('titleTag: tagWrappers should be 2 characters');
 				return;
