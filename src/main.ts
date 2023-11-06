@@ -1,6 +1,5 @@
 import { getCurrentTags } from './utils/getCurrentTags';
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import { getInputs } from './utils/getInputs';
 import { getConfigFile, getPullRequest, updatePullRequest } from './octokit';
 import { getTagsToAdd } from './utils/getTagsToAdd';
@@ -39,7 +38,7 @@ export async function run(): Promise<void> {
 			});
 			
 			// Parse tags that exists at the beginning of the title
-			const title = pull.title;
+			const title = pull.info.title;
 			const currentTags = getCurrentTags(title, tagWrappers);
 
 			// Parse list of tags to apply
