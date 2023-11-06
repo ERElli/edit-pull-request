@@ -1,3 +1,4 @@
+import { RequestParameters } from "@octokit/types";
 export type Tag = Record<string, string>;
 
 export type ConfigFile = {

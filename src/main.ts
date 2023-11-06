@@ -28,6 +28,11 @@ export async function run(): Promise<void> {
 			const titleTagConfig = configFile.titleTagConfig;
 			const tagWrappers = titleTagConfig.tagWrappers;
 
+			if (tagWrappers.length !== 2) {
+				core.setFailed('titleTag: tagWrappers should be 2 characters');
+				return;
+			}
+
 			// Get names of files changed in the PR
 			const names = pull.updatedFiles.map((item) => {
 				return item.filename;
@@ -47,7 +52,8 @@ export async function run(): Promise<void> {
 			})
 			const finalTitle = `${tagTitle}${title}`;
 
-			await updatePullRequest(octokit, prNumber, {title: finalTitle});
+			let test = await updatePullRequest(octokit, prNumber, {title: finalTitle});
+			console.dir({data: test.data.title}, {depth: 10});
 		}
 	} catch (error) {
 		// Fail the workflow run if an error occurs
