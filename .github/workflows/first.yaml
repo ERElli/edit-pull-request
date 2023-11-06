@@ -5,6 +5,7 @@ on:
     type: [opened, reopened, synchronize]
 
 permissions:
+  contents: read
   pull-requests: write
 
 jobs:
