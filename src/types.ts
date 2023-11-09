@@ -1,10 +1,11 @@
 import * as github from "@actions/github";
 
+export type TitleTagConfig = {
+	tags: Array<Tag>
+	tagWrappers: string
+}
 export type ConfigFile = {
-	titleTagConfig?: {
-		tags: Array<Tag>
-		tagWrappers: string
-	}
+	titleTagConfig?: TitleTagConfig
 };
 
 export type prPatchBody = {
