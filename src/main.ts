@@ -27,7 +27,6 @@ export async function run(): Promise<void> {
 			const titleTagConfig = configFile.titleTagConfig;
 			const tagWrappers = titleTagConfig.tagWrappers;
 
-			console.dir({tagWrappers});
 			if (tagWrappers.length !== 2) {
 				core.setFailed('titleTag: tagWrappers should be 2 characters');
 				return;
@@ -53,7 +52,6 @@ export async function run(): Promise<void> {
 			const finalTitle = `${tagTitle}${title}`;
 
 			let test = await updatePullRequest(octokit, prNumber, {title: finalTitle});
-			console.dir({title: test.title}, {depth: 20});
 		}
 	} catch (error) {
 		// Fail the workflow run if an error occurs
