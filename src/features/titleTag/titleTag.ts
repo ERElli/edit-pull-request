@@ -37,5 +37,5 @@ export const titleTag = async (
 	})
 	const finalTitle = `${tagTitle}${title}`;
 
-	let test = await updatePullRequest(octokit, pull.info.id, {title: finalTitle});
+	let test = await updatePullRequest(octokit, pull.info.number, {title: finalTitle});
 }
