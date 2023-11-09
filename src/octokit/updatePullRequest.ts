@@ -16,5 +16,7 @@ export const updatePullRequest = async (
 		...body,
 	});
 
+	console.dir({data}, {depth: 10});
+
 	return data;
 }
