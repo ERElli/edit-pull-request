@@ -1,5 +1,4 @@
-import { ConfigFile } from '../types';
-import { OctokitClient } from './octokitClient';
+import { ConfigFile, OctokitClient } from '../types';
 import * as github from '@actions/github';
 import * as core from '@actions/core';
 import * as yaml from 'yaml';

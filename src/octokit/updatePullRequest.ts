@@ -1,5 +1,4 @@
-import { prPatchBody } from '../types';
-import { OctokitClient, PullsUpdateReturnType } from './octokitClient';
+import { prPatchBody, OctokitClient, PullsUpdateReturnType} from '../types';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 
