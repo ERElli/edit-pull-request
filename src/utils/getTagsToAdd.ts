@@ -15,6 +15,5 @@ export const getTagsToAdd = (tagConfigs: Array<Tag>, files: Array<string>, curre
 			return match;
 		})
 	}
-
 	return tagsToApply;
 }

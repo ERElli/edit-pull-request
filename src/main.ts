@@ -53,7 +53,7 @@ export async function run(): Promise<void> {
 			const finalTitle = `${tagTitle}${title}`;
 
 			let test = await updatePullRequest(octokit, prNumber, {title: finalTitle});
-			console.dir({data: test.data.title}, {depth: 10});
+			console.dir({title: test.title}, {depth: 20});
 		}
 	} catch (error) {
 		// Fail the workflow run if an error occurs

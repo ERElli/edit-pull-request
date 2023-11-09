@@ -1,6 +1,3 @@
-import { RequestParameters } from "@octokit/types";
-export type Tag = Record<string, string>;
-
 export type ConfigFile = {
 	titleTagConfig?: {
 		tags: Array<Tag>
@@ -11,3 +8,5 @@ export type ConfigFile = {
 export type prPatchBody = {
 	title?: string;
 }
+
+export type Tag = Record<string, string>;
