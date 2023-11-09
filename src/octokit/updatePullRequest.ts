@@ -9,11 +9,12 @@ export const updatePullRequest = async (
 ): Promise<PullsUpdateReturnType> => {
 	core.info('Updating PR');
 
-	console.dir({
-		prNumber,
-		body,
-	}, {depth: 20});
+	// console.dir({
+	// 	prNumber,
+	// 	body,
+	// }, {depth: 20});
 
+	core.debug(JSON.stringify({octokit, prNumber, body}, null, 2));
 	const {data} = await octokit.rest.pulls.update({
 		owner: github.context.repo.owner,
 		repo: github.context.repo.repo,
