@@ -8,6 +8,9 @@ export const getConfigFile = async (
 	configPath: string,
 ): Promise<ConfigFile> => {
 	core.info('Fetching config file')
+	core.debug('getConfigFile() arguments');
+	core.debug(JSON.stringify({octokit, configPath}, null, 2));
+
 	const {data: ghData} = await octokit.rest.repos.getContent({
 		owner: github.context.repo.owner,
 		repo: github.context.repo.repo,

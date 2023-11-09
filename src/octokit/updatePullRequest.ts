@@ -7,22 +7,15 @@ export const updatePullRequest = async (
 	prNumber: number,
 	body: prPatchBody
 ): Promise<PullsUpdateReturnType> => {
+	core.debug('updatePullRequest arguments')
+	core.debug(JSON.stringify({octokit, prNumber, body}, null, 2));
 	core.info('Updating PR');
 
-	// console.dir({
-	// 	prNumber,
-	// 	body,
-	// }, {depth: 20});
-
-	core.debug(JSON.stringify({octokit, prNumber, body}, null, 2));
 	const {data} = await octokit.rest.pulls.update({
 		owner: github.context.repo.owner,
 		repo: github.context.repo.repo,
 		pull_number: prNumber,
 		...body,
 	});
-
-	console.dir({data}, {depth: 10});
-
 	return data;
 }

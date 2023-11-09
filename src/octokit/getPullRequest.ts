@@ -6,6 +6,8 @@ export const getPullRequest = async (
 	octokit: OctokitClient,
 	prNumber: number,
 ): Promise<{info: PullsGetReturnType, updatedFiles: ListFilesReturnType}> => {
+	core.debug('getPullRequest arguments');
+	core.debug(JSON.stringify({octokit, prNumber}, null, 2));
 	core.info('Fetching PR information');
 	const {data: info} = await octokit.rest.pulls.get({
 		owner: github.context.repo.owner,
