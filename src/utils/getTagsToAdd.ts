@@ -1,19 +1,19 @@
-import { Tag } from "../types";
 import { minimatch } from 'minimatch';
 
-export const getTagsToAdd = (tagConfigs: Array<Tag>, files: Array<string>, currentTags: Set<string>): Set<string> => {
+export const getTagsToAdd = (tagConfigs: Map<string, Array<string>>, files: Array<string>, currentTags: Set<string>): Set<string> => {
 	const tagsToApply = new Set<string>();
-	for (let tagConfig of tagConfigs) {
-		const tagName = Object.keys(tagConfig)[0];
-		const tagGlob = tagConfig[tagName];
-
-		files.find((file) => {
-			const match = minimatch(file, tagGlob);
-			if (match && !currentTags.has(tagName)) {
-				tagsToApply.add(tagName);
+	files.forEach((file) => {
+		for (let [name, globs] of tagConfigs) {
+			let match
+			for (let glob of globs) {
+				match = minimatch(file, glob);
+				if (match && !currentTags.has(name)) {
+					tagsToApply.add(name);
+					continue;
+				}
 			}
-			return match;
-		})
-	}
+		};
+	});
+
 	return tagsToApply;
 }

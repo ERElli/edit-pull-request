@@ -4,6 +4,7 @@ import { getInputs } from './utils/getInputs';
 import { getConfigFile, getPullRequest, updatePullRequest } from './octokit';
 import { getTagsToAdd } from './utils/getTagsToAdd';
 import { initializeOctokit } from './octokit/octokitClient';
+import { transformTagConfigs } from './utils/transformTagConfigs';
 
 /**
  * The main function for the action.
@@ -43,7 +44,8 @@ export async function run(): Promise<void> {
 
 			// Parse list of tags to apply
 			const tagConfigs = titleTagConfig.tags;
-			const tagsToApply = getTagsToAdd(tagConfigs, names, currentTags)
+			const tagConfigMap = transformTagConfigs(tagConfigs);
+			const tagsToApply = getTagsToAdd(tagConfigMap, names, currentTags);
 
 			let tagTitle: string = '';
 			tagsToApply.forEach((tag) => {
