@@ -14,17 +14,17 @@ Prefix the pull request title with tags defined in a config file
 ### Example Config
 ```yml
 titleTagConfig:
-	# The list of tags that we want to add to PR titles
-	tags:
-		# Add utils to title if any files in src/utils/ have changed
-		- utils: "src/utils/**" 
-		# Add lib to title if any files in src/lib/ OR test/lib/ have changed
-		- lib:
-			- "src/lib/**"
-			- "test/lib/**"
-	# Wrap tags in the given characters. Ex. [utils]This is an example PR title
-	# These characters are also used to parse tags that already exist in the title
-	tagWrappers: '[]'
+  # The list of tags that we want to add to PR titles
+  tags:
+    # Add utils to title if any files in src/utils/ have changed
+    - utils: "src/utils/**"
+    # Add lib to title if any files in src/lib/ OR test/lib/ have changed
+    - lib:
+      - "src/lib/**"
+      - "test/lib/**"
+  # Wrap tags in the given characters. Ex. [utils]This is an example PR title
+  # These characters are also used to parse tags that already exist in the title
+  tagWrappers: '[]'
 ```
 
 ## Resources
