@@ -26,37 +26,7 @@ export async function run(): Promise<void> {
 		const pull = await getPullRequest(octokit, prNumber);
 
 		if (configFile.titleTagConfig) {
-			titleTag(configFile.titleTagConfig, octokit, pull)
-
-			// const titleTagConfig = configFile.titleTagConfig;
-			// const tagWrappers = titleTagConfig.tagWrappers;
-
-			// if (tagWrappers.length !== 2) {
-			// 	core.setFailed('titleTag: tagWrappers should be 2 characters');
-			// 	return;
-			// }
-
-			// // Get names of files changed in the PR
-			// const names = pull.updatedFiles.map((item) => {
-			// 	return item.filename;
-			// });
-			
-			// // Parse tags that exists at the beginning of the title
-			// const title = pull.info.title;
-			// const currentTags = getCurrentTags(title, tagWrappers);
-
-			// // Parse list of tags to apply
-			// const tagConfigs = titleTagConfig.tags;
-			// const tagConfigMap = transformTagConfigs(tagConfigs);
-			// const tagsToApply = getTagsToAdd(tagConfigMap, names, currentTags);
-
-			// let tagTitle: string = '';
-			// tagsToApply.forEach((tag) => {
-			// 	tagTitle += `${tagWrappers[0]}${tag}${tagWrappers[1]}`
-			// })
-			// const finalTitle = `${tagTitle}${title}`;
-
-			// let test = await updatePullRequest(octokit, prNumber, {title: finalTitle});
+			titleTag(configFile.titleTagConfig, octokit, pull);
 		}
 	} catch (error) {
 		// Fail the workflow run if an error occurs
