@@ -2,7 +2,4 @@ titleTagConfig:
   tags: 
     - octokit: "src/octokit/**"
     - utils: "src/utils/**"
-    - extra:
-      - "src/octokit/**"
-      - "src/utils/**"
   tagWrappers: "[]"
