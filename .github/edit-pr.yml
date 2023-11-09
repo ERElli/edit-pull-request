@@ -4,5 +4,5 @@ titleTagConfig:
     - utils: "src/utils/**"
     - extra:
       - "src/utils/**"
-      - "src/octokit/**""
+      - "src/octokit/**"
   tagWrappers: "[]"
