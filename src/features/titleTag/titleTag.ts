@@ -1,9 +1,10 @@
-import {OctokitClient, PullsGetReturnType, TitleTagConfig } from '../../types'
+import { OctokitClient, TitleTagConfig } from '../../types';
+import * as core from '@actions/core';
 import { getCurrentTags } from 'src/utils/getCurrentTags';
 import { transformTagConfigs } from 'src/utils/transformTagConfigs';
 import { getTagsToAdd } from 'src/utils/getTagsToAdd';
 import { updatePullRequest } from 'src/octokit';
-import { getPullRequest } from 'src/octokit'
+import { getPullRequest } from 'src/octokit';
 
 export const titleTag = async (
 	titleTagConfig: TitleTagConfig,
@@ -12,10 +13,10 @@ export const titleTag = async (
 ) => {
 	const tagWrappers = titleTagConfig.tagWrappers;
 
-	// if (tagWrappers.length !== 2) {
-	// 	core.setFailed('titleTag: tagWrappers should be 2 characters');
-	// 	return;
-	// }
+	if (tagWrappers.length !== 2) {
+		core.setFailed('titleTag: tagWrappers should be 2 characters');
+		return;
+	}
 
 	// Get names of files changed in the PR
 	const names = pull.updatedFiles.map((item) => {
@@ -37,5 +38,5 @@ export const titleTag = async (
 	})
 	const finalTitle = `${tagTitle}${title}`;
 
-	let test = await updatePullRequest(octokit, pull.info.number, {title: finalTitle});
+	await updatePullRequest(octokit, pull.info.number, {title: finalTitle});
 }

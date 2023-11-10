@@ -6,9 +6,9 @@ Based on [this](https://github.com/actions/typescript-action) typescript action 
 ## Development
 
 ## Supported Features
-- [Add tags to PR titles](#ad-tags-to-pr-titles)
+- [Prefix tags to PR titles](#prefix-tags-to-pr-titles)
 
-### Add Tags to PR Titles
+### Prefix Tags to PR Titles
 Prefix the pull request title with tags defined in a config file
 
 ### Example Config
