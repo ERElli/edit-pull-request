@@ -1,10 +1,7 @@
-import { getCurrentTags } from './utils/getCurrentTags';
 import * as core from '@actions/core';
 import { getInputs } from './utils/getInputs';
-import { getConfigFile, getPullRequest, updatePullRequest } from './octokit';
-import { getTagsToAdd } from './utils/getTagsToAdd';
+import { getConfigFile, getPullRequest } from './octokit';
 import { initializeOctokit } from './octokit/octokitClient';
-import { transformTagConfigs } from './utils/transformTagConfigs';
 import { titleTag } from './features/titleTag/titleTag';
 
 /**
@@ -30,6 +27,6 @@ export async function run(): Promise<void> {
 		}
 	} catch (error) {
 		// Fail the workflow run if an error occurs
-		if (error instanceof Error) core.setFailed(error.message)
+		if (error instanceof Error) core.setFailed(error.message);
 	}
 }

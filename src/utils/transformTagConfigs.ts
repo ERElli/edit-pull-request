@@ -1,8 +1,8 @@
-import {Tag} from "src/types";
+import {Tag} from 'src/types';
 
 export const transformTagConfigs = (tagConfigs: Array<Tag>): Map<string, Array<string>> => {
 	const tagMap = new Map<string, Array<string>>();
-	for (let tagConfig of tagConfigs) {
+	for (const tagConfig of tagConfigs) {
 		const tagName = Object.keys(tagConfig)[0];
 		const tagGlob = tagConfig[tagName];
 
@@ -14,4 +14,4 @@ export const transformTagConfigs = (tagConfigs: Array<Tag>): Map<string, Array<s
 		}
 	}
 	return tagMap;
-}
+};

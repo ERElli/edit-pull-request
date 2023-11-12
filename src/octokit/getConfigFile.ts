@@ -7,7 +7,7 @@ export const getConfigFile = async (
 	octokit: OctokitClient,
 	configPath: string,
 ): Promise<ConfigFile> => {
-	core.info('Fetching config file')
+	core.info('Fetching config file');
 	core.debug('getConfigFile() arguments');
 	core.debug(JSON.stringify({octokit, configPath}, null, 2));
 
@@ -28,6 +28,5 @@ export const getConfigFile = async (
 
 	// Parse the yml file into a json object
 	const parsed = yaml.parse(content) as ConfigFile;
-	console.dir({parsed}, {depth: 10});
 	return parsed;
-}
+};

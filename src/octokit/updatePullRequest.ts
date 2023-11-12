@@ -1,13 +1,13 @@
-import { prPatchBody, OctokitClient, PullsUpdateReturnType} from '../types';
+import { OctokitClient, PullsUpdateReturnType, PullsUpdateRequestBody } from '../types';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 
 export const updatePullRequest = async (
 	octokit: OctokitClient,
 	prNumber: number,
-	body: prPatchBody
+	body: PullsUpdateRequestBody
 ): Promise<PullsUpdateReturnType> => {
-	core.debug('updatePullRequest arguments')
+	core.debug('updatePullRequest arguments');
 	core.debug(JSON.stringify({octokit, prNumber, body}, null, 2));
 	core.info('Updating PR');
 
@@ -18,4 +18,4 @@ export const updatePullRequest = async (
 		...body,
 	});
 	return data;
-}
+};

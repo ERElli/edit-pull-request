@@ -15,7 +15,7 @@ export const getPullRequest = async (
 		pull_number: prNumber,
 	});
 
-	core.info('Fetching list of updated files')
+	core.info('Fetching list of updated files');
 	const {data: updatedFiles} = await octokit.rest.pulls.listFiles({
 		owner: github.context.repo.owner,
 		repo: github.context.repo.repo,
@@ -25,5 +25,5 @@ export const getPullRequest = async (
 	return {
 		info,
 		updatedFiles,
-	}
-}
+	};
+};

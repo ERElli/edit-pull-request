@@ -9,7 +9,7 @@ import { getPullRequest } from 'src/octokit';
 export const titleTag = async (
 	titleTagConfig: TitleTagConfig,
 	octokit: OctokitClient,
-	pull: Awaited<ReturnType<typeof getPullRequest>>
+	pull: Awaited<ReturnType<typeof getPullRequest>>,
 ) => {
 	const tagWrappers = titleTagConfig.tagWrappers;
 
@@ -34,9 +34,9 @@ export const titleTag = async (
 
 	let tagTitle: string = '';
 	tagsToApply.forEach((tag) => {
-		tagTitle += `${tagWrappers[0]}${tag}${tagWrappers[1]}`
-	})
+		tagTitle += `${tagWrappers[0]}${tag}${tagWrappers[1]}`;
+	});
 	const finalTitle = `${tagTitle}${title}`;
 
 	await updatePullRequest(octokit, pull.info.number, {title: finalTitle});
-}
+};

@@ -1,16 +1,17 @@
-import * as github from "@actions/github";
+import * as github from '@actions/github';
 
 export type TitleTagConfig = {
 	tags: Array<Tag>
 	tagWrappers: string
-}
+};
+
 export type ConfigFile = {
 	titleTagConfig?: TitleTagConfig
 };
 
-export type prPatchBody = {
+export type PullsUpdateRequestBody = {
 	title?: string;
-}
+};
 
 export type Tag = Record<string, string | Array<string>>;
 

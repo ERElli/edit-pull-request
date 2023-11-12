@@ -18,6 +18,9 @@ titleTagConfig:
   tags:
     # Add utils to title if any files in src/utils/ have changed
     - utils: "src/utils/**"
+    # Add api to title if files in src/api/ have changed
+    - api:
+      - "src/api/**"
     # Add lib to title if any files in src/lib/ OR test/lib/ have changed
     - lib:
       - "src/lib/**"
