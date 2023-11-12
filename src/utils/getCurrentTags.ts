@@ -1,4 +1,7 @@
-export function getCurrentTags(title: string, tagWrappers: string): Set<string> {
+export function getCurrentTags(
+	title: string,
+	tagWrappers: string,
+): Set<string> {
 	const regex = new RegExp('\\s');
 	let processing: boolean = true;
 	let i: number = 0;

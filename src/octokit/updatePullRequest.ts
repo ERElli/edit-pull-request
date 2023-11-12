@@ -5,7 +5,7 @@ import * as github from '@actions/github';
 export const updatePullRequest = async (
 	octokit: OctokitClient,
 	prNumber: number,
-	body: PullsUpdateRequestBody
+	body: PullsUpdateRequestBody,
 ): Promise<PullsUpdateReturnType> => {
 	core.debug('updatePullRequest arguments');
 	core.debug(JSON.stringify({octokit, prNumber, body}, null, 2));

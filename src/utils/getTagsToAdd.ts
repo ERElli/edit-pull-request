@@ -1,6 +1,10 @@
 import { minimatch } from 'minimatch';
 
-export const getTagsToAdd = (tagMap: Map<string, Array<string>>, files: Array<string>, currentTags: Set<string>): Set<string> => {
+export const getTagsToAdd = (
+	tagMap: Map<string, Array<string>>,
+	files: Array<string>,
+	currentTags: Set<string>,
+): Set<string> => {
 	const tagsToApply = new Set<string>();
 	files.forEach((file) => {
 		for (const [name, globs] of tagMap) {
