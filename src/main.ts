@@ -1,5 +1,8 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
+import {getConfigFile, getPullRequest} from './octokit';
+import {getInputs} from './utils/getInputs';
+import {initializeOctokit} from './octokit/octokitClient';
+import {titleTag} from './features/titleTag';
 
 /**
  * The main function for the action.
@@ -7,24 +10,23 @@ import * as github from '@actions/github';
  */
 export async function run(): Promise<void> {
 	try {
-		const prNumber = parseInt(core.getInput('pr-number'));
-		const configPath = core.getInput('config-path');
-		const token = core.getInput('repo-token');
+		// Get action inputs
+		const {prNumber, configPath, token} = getInputs();
 
-		core.info(`prNumber: ${prNumber}`)
-		core.info(`configPath: ${configPath}`)
-		core.info(`token: ${token}`)
+		// initialize Octokit client
+		const octokit = initializeOctokit(token);
 
-		const client = github.getOctokit(token);
-		const pull = await client.rest.pulls.get({
-			owner: github.context.repo.owner,
-			repo: github.context.repo.repo,
-			pull_number: prNumber,
-		});
+		// Fetch config file
+		const configFile = await getConfigFile(octokit, configPath);
 
-		console.dir({pull}, {depth: 50});
+		// Fetch pull request information
+		const pull = await getPullRequest(octokit, prNumber);
+
+		if (configFile.titleTagConfig) {
+			await titleTag(configFile.titleTagConfig, octokit, pull);
+		}
 	} catch (error) {
 		// Fail the workflow run if an error occurs
-		if (error instanceof Error) core.setFailed(error.message)
+		if (error instanceof Error) core.setFailed(error.message);
 	}
 }
