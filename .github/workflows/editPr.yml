@@ -13,6 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./
+      - uses: ERElli/edit-pull-request@v1
         with:
           pr-number: ${{github.event.number}}

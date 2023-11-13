@@ -3,6 +3,7 @@ import * as github from '@actions/github';
 import * as yaml from 'yaml';
 import {ConfigFile, OctokitClient} from '../types';
 
+// adding a comment here to trigger tags
 export const getConfigFile = async (
 	octokit: OctokitClient,
 	configPath: string,
