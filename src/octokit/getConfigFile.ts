@@ -1,7 +1,7 @@
-import { ConfigFile, OctokitClient } from '../types';
-import * as github from '@actions/github';
 import * as core from '@actions/core';
+import * as github from '@actions/github';
 import * as yaml from 'yaml';
+import {ConfigFile, OctokitClient} from '../types';
 
 export const getConfigFile = async (
 	octokit: OctokitClient,

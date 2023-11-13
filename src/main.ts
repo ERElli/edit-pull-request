@@ -1,8 +1,8 @@
 import * as core from '@actions/core';
-import { getInputs } from './utils/getInputs';
-import { getConfigFile, getPullRequest } from './octokit';
-import { initializeOctokit } from './octokit/octokitClient';
-import { titleTag } from './features/titleTag/titleTag';
+import {getConfigFile, getPullRequest} from './octokit';
+import {getInputs} from './utils/getInputs';
+import {initializeOctokit} from './octokit/octokitClient';
+import {titleTag} from './features/titleTag';
 
 /**
  * The main function for the action.
@@ -23,7 +23,7 @@ export async function run(): Promise<void> {
 		const pull = await getPullRequest(octokit, prNumber);
 
 		if (configFile.titleTagConfig) {
-			titleTag(configFile.titleTagConfig, octokit, pull);
+			await titleTag(configFile.titleTagConfig, octokit, pull);
 		}
 	} catch (error) {
 		// Fail the workflow run if an error occurs

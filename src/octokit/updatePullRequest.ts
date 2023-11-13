@@ -1,6 +1,6 @@
-import { OctokitClient, PullsUpdateReturnType, PullsUpdateRequestBody } from '../types';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import {OctokitClient, PullsUpdateRequestBody, PullsUpdateReturnType} from '../types';
 
 export const updatePullRequest = async (
 	octokit: OctokitClient,

@@ -3,9 +3,9 @@ export function getCurrentTags(
 	tagWrappers: string,
 ): Set<string> {
 	const regex = new RegExp('\\s');
-	let processing: boolean = true;
-	let i: number = 0;
-	let currentChar: string = '';
+	let processing = true;
+	let i = 0;
+	let currentChar = '';
 	const tags = new Set<string>();
 
 	while (processing) {

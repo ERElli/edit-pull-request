@@ -1,6 +1,6 @@
-import { ListFilesReturnType, OctokitClient, PullsGetReturnType } from '../types';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import {ListFilesReturnType, OctokitClient, PullsGetReturnType} from '../types';
 
 export const getPullRequest = async (
 	octokit: OctokitClient,

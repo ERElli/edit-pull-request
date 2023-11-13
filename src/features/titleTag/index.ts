@@ -1,10 +1,9 @@
-import { OctokitClient, TitleTagConfig } from '../../types';
 import * as core from '@actions/core';
-import { getCurrentTags } from 'src/utils/getCurrentTags';
-import { transformTagConfigs } from 'src/utils/transformTagConfigs';
-import { getTagsToAdd } from 'src/utils/getTagsToAdd';
-import { updatePullRequest } from 'src/octokit';
-import { getPullRequest } from 'src/octokit';
+import {getPullRequest, updatePullRequest} from '../../octokit';
+import {OctokitClient, TitleTagConfig} from '../../types';
+import {getCurrentTags} from '../../utils/getCurrentTags';
+import {getTagsToAdd} from '../../utils/getTagsToAdd';
+import {transformTagConfigs} from '../../utils/transformTagConfigs';
 
 export const titleTag = async (
 	titleTagConfig: TitleTagConfig,
@@ -32,7 +31,7 @@ export const titleTag = async (
 	const tagConfigMap = transformTagConfigs(tagConfigs);
 	const tagsToApply = getTagsToAdd(tagConfigMap, names, currentTags);
 
-	let tagTitle: string = '';
+	let tagTitle = '';
 	tagsToApply.forEach((tag) => {
 		tagTitle += `${tagWrappers[0]}${tag}${tagWrappers[1]}`;
 	});

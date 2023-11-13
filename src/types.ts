@@ -1,17 +1,17 @@
 import * as github from '@actions/github';
 
-export type TitleTagConfig = {
+export interface TitleTagConfig {
 	tags: Array<Tag>
 	tagWrappers: string
-};
+}
 
-export type ConfigFile = {
+export interface ConfigFile {
 	titleTagConfig?: TitleTagConfig
-};
+}
 
-export type PullsUpdateRequestBody = {
-	title?: string;
-};
+export interface PullsUpdateRequestBody {
+	title?: string
+}
 
 export type Tag = Record<string, string | Array<string>>;
 
