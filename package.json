@@ -4,7 +4,15 @@
   "description": "Github action to update a pull-request",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build src/index.ts -m"
+    "build": "ncc build src/index.ts -m --license licenses.txt",
+    "clean": "rm -rf ./node_modules package-lock.json",
+    "lint": "eslint ."
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "author": "ERElli",
   "license": "MIT",

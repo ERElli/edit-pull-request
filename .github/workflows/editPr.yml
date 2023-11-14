@@ -2,17 +2,18 @@ name: 'Edit PR'
 
 on:
   pull_request:
-    type: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize]
 
 permissions:
   contents: read
   pull-requests: write
 
 jobs:
-  first:
+  Edit-PR:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: ./
         with:
-          pr-number: ${{github.event.number}}
+          prNumber: ${{github.event.number}}
+          githubToken: ${{github.token}}

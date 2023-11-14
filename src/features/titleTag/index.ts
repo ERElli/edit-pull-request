@@ -1,9 +1,7 @@
 import * as core from '@actions/core';
 import {getPullRequest, updatePullRequest} from '../../octokit';
 import {OctokitClient, TitleTagConfig} from '../../types';
-import {getCurrentTags} from '../../utils/getCurrentTags';
-import {getTagsToAdd} from '../../utils/getTagsToAdd';
-import {transformTagConfigs} from '../../utils/transformTagConfigs';
+import {getCurrentTags, getTagsToAdd, normalizeTagConfigs} from './utils';
 
 export const titleTag = async (
 	titleTagConfig: TitleTagConfig,
@@ -21,14 +19,14 @@ export const titleTag = async (
 	const names = pull.updatedFiles.map((item) => {
 		return item.filename;
 	});
-	
+
 	// Parse tags that exists at the beginning of the title
 	const title = pull.info.title;
 	const currentTags = getCurrentTags(title, tagWrappers);
 
 	// Parse list of tags to apply
 	const tagConfigs = titleTagConfig.tags;
-	const tagConfigMap = transformTagConfigs(tagConfigs);
+	const tagConfigMap = normalizeTagConfigs(tagConfigs);
 	const tagsToApply = getTagsToAdd(tagConfigMap, names, currentTags);
 
 	let tagTitle = '';

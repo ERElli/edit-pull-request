@@ -3,32 +3,32 @@ A Github action to edit pull requests
 
 Based on [this](https://github.com/actions/typescript-action) typescript action template
 
-## Development
-
 ## Supported Features
-- [Prefix tags to PR titles](#prefix-tags-to-pr-titles)
+- [Prefix tags to PR titles](./docs/title-tags.md)
 
-### Prefix Tags to PR Titles
-Prefix the pull request title with tags defined in a config file
+## Development
+1. Make sure you're using the correct node version
+	```bash
+	nvm use
+	```
 
-### Example Config
-```yml
-titleTagConfig:
-  # The list of tags that we want to add to PR titles
-  tags:
-    # Add utils to title if any files in src/utils/ have changed
-    - utils: "src/utils/**"
-    # Add api to title if files in src/api/ have changed
-    - api:
-      - "src/api/**"
-    # Add lib to title if any files in src/lib/ OR test/lib/ have changed
-    - lib:
-      - "src/lib/**"
-      - "test/lib/**"
-  # Wrap tags in the given characters. Ex. [utils]This is an example PR title
-  # These characters are also used to parse tags that already exist in the title
-  tagWrappers: '[]'
-```
+1. Clear `node_modules/` and `package-lock.json`
+	```bash
+	npm run clean
+	```
+
+1. Install dependencies
+	```bash
+	npm i
+	```
+
+1. Make your file changes
+
+1. Create a build
+	```bash
+	npm run build
+	```
+	- Actions run against this generated file
 
 ## Resources
 - [Github Actions Toolkit](https://github.com/actions/toolkit)
