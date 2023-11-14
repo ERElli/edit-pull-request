@@ -21,18 +21,14 @@
 	],
 	"rules": {
 		"@typescript-eslint/array-type": ["error", {"default": "generic"}],
+		"@typescript-eslint/no-unused-vars": ["error"],
 		"comma-dangle": ["error", "always-multiline"],
 		"import/no-useless-path-segments": ["error", {"noUselessIndex": true}],
 		"import/order": ["error"],
 		"indent": ["error", "tab"],
 		"object-curly-spacing": ["error", "never"],
 		"quotes": ["error", "single"],
-		"semi": ["error", "always"],
-		"sort-imports": ["error", {
-			"ignoreCase": true,
-			"ignoreMemberSort": false,
-			"memberSyntaxSortOrder": ["all", "multiple", "single", "none"]
-		}]
+		"semi": ["error", "always"]
 	},
 	"settings": {
 		"import/parsers": {

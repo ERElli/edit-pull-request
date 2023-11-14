@@ -4,7 +4,7 @@
   "description": "Github action to update a pull-request",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build src/index.ts -m"
+    "build": "ncc build src/index.ts -m --license licenses.txt"
   },
   "author": "ERElli",
   "license": "MIT",

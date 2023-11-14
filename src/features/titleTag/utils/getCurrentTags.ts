@@ -1,3 +1,14 @@
+
+/*
+	Returns the list of existing tags at the beginning of a PR title
+
+	ex.
+		given:
+			- title: [utils] [octokit][titleTag]Example title [anotherTag]
+			- tagWrappers: '[]'
+		output:
+			Set['utils', 'octokit', 'titleTag']
+*/
 export function getCurrentTags(
 	title: string,
 	tagWrappers: string,

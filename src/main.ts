@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
+import * as github from '@actions/github';
 import {getConfigFile, getPullRequest} from './octokit';
-import {getInputs} from './utils/getInputs';
-import {initializeOctokit} from './octokit/octokitClient';
+import {getInputs} from './utils';
 import {titleTag} from './features/titleTag';
 
 /**
@@ -11,10 +11,10 @@ import {titleTag} from './features/titleTag';
 export async function run(): Promise<void> {
 	try {
 		// Get action inputs
-		const {prNumber, configPath, token} = getInputs();
+		const {prNumber, configPath, githubToken} = getInputs();
 
 		// initialize Octokit client
-		const octokit = initializeOctokit(token);
+		const octokit = github.getOctokit(githubToken);
 
 		// Fetch config file
 		const configFile = await getConfigFile(octokit, configPath);

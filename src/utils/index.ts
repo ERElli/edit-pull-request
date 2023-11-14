@@ -1,0 +1,1 @@
+export {getInputs} from './getInputs';
