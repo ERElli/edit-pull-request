@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 
 export const getInputs = () => ({
-	prNumber: parseInt(core.getInput('pr-number')),
-	configPath: core.getInput('config-path'),
-	token: core.getInput('repo-token'),
+	prNumber: parseInt(core.getInput('prNumber')),
+	configPath: core.getInput('configPath'),
+	githubToken: core.getInput('githubToken'),
 });
