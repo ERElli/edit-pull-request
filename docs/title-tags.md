@@ -6,7 +6,7 @@ Prefix the pull request title with tags defined in a config file
 ### Example Config
 ```yml
 ...
-prefixTitleTagConfig:
+titleTagConfig:
   # The list of tags that we want to prefix to PR titles
   tags:
     # Add utils to title if any files in src/utils/ have changed

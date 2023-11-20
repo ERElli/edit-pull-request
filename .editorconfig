@@ -8,13 +8,10 @@ insert_final_newline = true
 [*.json]
 indent_style = tab
 
-[{*.yaml,*.yml,.eslintrc}]
+[{*.yaml,*.yml}]
 indent_style = space
 indent_size = 2
 
 [package.json]
 indent_style = space
-indent_size = 2
-
-[{codeship-services.yml, codeship-steps.yml}]
 indent_size = 2
