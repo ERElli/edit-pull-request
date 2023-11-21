@@ -16,4 +16,3 @@ jobs:
       - uses: ./
         with:
           prNumber: ${{github.event.number}}
-          githubToken: ${{github.token}}
