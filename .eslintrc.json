@@ -28,7 +28,8 @@
 		"indent": ["error", "tab"],
 		"object-curly-spacing": ["error", "never"],
 		"quotes": ["error", "single"],
-		"semi": ["error", "always"]
+		"semi": ["error", "always"],
+		"sort-imports": ["error", {"ignoreDeclarationSort": true}]
 	},
 	"settings": {
 		"import/parsers": {

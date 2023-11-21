@@ -3,7 +3,7 @@
 
 	ex.
 		given:
-			- title: [utils] [octokit][titleTag]Example title [anotherTag]
+			- title: '[utils] [octokit][titleTag]Example title [anotherTag]'
 			- tagWrappers: '[]'
 		output:
 			Set['utils', 'octokit', 'titleTag']
